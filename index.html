@@ -1,0 +1,35 @@
+<body>
+    <button type="button" id="btnDownload">Download</button>
+    <canvas id="myCanvas" width="640" height="480" style="border: 2px solid #000; float: left;"></canvas>
+    <img crossorigin="anonymous" src="https://github.com/leonid100/test1/blob/771bcd77245ccb858ff228ed077b5f69c0a35ad9/220c656e.jpg" id="imgConverted" style="float: left; border: 2px solid #00f; margin-left: 10px;">
+
+    <script>
+        const btnDownload = document.querySelector("#btnDownload");
+        const myCanvas = document.querySelector("#myCanvas");
+        const imgConverted = document.querySelector("#imgConverted");
+        const ctx = myCanvas.getContext("2d");
+
+        var background = new Image();
+        //background.setAttribute('crossorigin', 'anonymous');
+        background.src = "https://github.com/leonid100/test1/blob/771bcd77245ccb858ff228ed077b5f69c0a35ad9/220c656e.jpg";
+        //https://fatface.ugc.bazaarvoice.com/9876-en_gb/2_1/3/ratingSlider.png
+        // Make sure the image is loaded first otherwise nothing will draw.
+        background.onload = function(){
+            ctx.drawImage(background,0,0);
+            ctx.font = "50px Roboto";
+            ctx.fillStyle = "red";
+            ctx.fillText("LTest", 100, 100);
+            ctx.fillRect(200, 150, 150, 75);
+        }
+
+
+        const a = document.createElement("a");
+        btnDownload.addEventListener("click", function(){
+            //document.body.appendChild(a);
+            a.href = myCanvas.toDataURL();
+            a.download = "1test.png";
+            a.click();
+            //document.body.removeChild(a);
+        });
+    </script>
+</body>
